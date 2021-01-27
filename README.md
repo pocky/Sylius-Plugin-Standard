@@ -32,6 +32,14 @@ $ git clone --branch 1.9-7.4 --depth 1 git@github.com:pocky/Sylius-Plugin-Standa
 $ cd project && rm -Rf .git
 ```
 
+### Sylius 1.8 and php 7.4
+
+```bash
+# GIT
+$ git clone --branch 1.8-7.4 --depth 1 git@github.com:pocky/Sylius-Plugin-Standard.git project
+$ cd project && rm -Rf .git
+```
+
 About
 -----
 
