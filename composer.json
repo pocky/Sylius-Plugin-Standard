@@ -1,5 +1,5 @@
 {
-    "name": "sylius/sylius-standard",
+    "name": "pocky/sylius-plugin-standard",
     "type": "project",
     "description": "Starting point for projects powered by Sylius eCommerce.",
     "keywords": [
@@ -21,6 +21,12 @@
         },
         {
             "name": "Community contributions"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./plugins/*"
         }
     ],
     "require": {

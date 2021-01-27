@@ -4,9 +4,34 @@
     </a>
 </p>
 
-<h1 align="center">Sylius Standard Edition</h1>
+<h1 align="center">Sylius Plugin Edition</h1>
 
-<p align="center">This is Sylius Standard Edition repository for starting new projects.</p>
+<p align="center">This is Sylius Standard Edition repository for plugins/themes development.</p>
+
+Why ?
+-----
+
+You maybe need to create a lot of plugins and/or themes for your projects. In this case it could be useful to
+have one clean standard distribution.
+
+How ?
+-----
+
+It's very simple, create your plugins (with [official skeleton](https://github.com/Sylius/PluginSkeleton) for example)
+in `/plugins` directory. Composer is configured to handle this directory. Create your plugin, follow standards and your
+plugin instruction but keep your "standard edition" clean. Publish your plugin following Sylius rules and use this
+clean project for your updates.
+
+Installation
+------------
+
+### Sylius 1.8 and php 7.3
+
+```bash
+# GIT
+$ git clone --branch 1.8-7.3 --depth 1 git@github.com:pocky/Sylius-Plugin-Standard.git project
+$ cd project && rm -Rf .git
+```
 
 About
 -----
@@ -29,7 +54,7 @@ Installation
 
 ```bash
 $ wget http://getcomposer.org/composer.phar
-$ php composer.phar create-project sylius/sylius-standard project
+$ php composer.phar create-project sylius/sylius-plugin-standard project
 $ cd project
 $ yarn install
 $ yarn build

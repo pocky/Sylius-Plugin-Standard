@@ -5,7 +5,7 @@ ARG PHP_VERSION=7.3
 ARG NODE_VERSION=10
 ARG NGINX_VERSION=1.16
 
-FROM php:${PHP_VERSION}-fpm-alpine AS sylius_php
+FROM php:${PHP_VERSION}-fpm-alpine AS sylius_plugins_php
 
 # persistent / runtime deps
 RUN apk add --no-cache \
@@ -76,6 +76,7 @@ WORKDIR /srv/sylius
 ARG APP_ENV=prod
 
 # prevent the reinstallation of vendors at every changes in the source code
+COPY plugins plugins/
 COPY composer.json composer.lock symfony.lock ./
 RUN set -eux; \
 	composer install --prefer-dist --no-autoloader --no-scripts --no-progress --no-suggest; \
@@ -107,7 +108,7 @@ RUN chmod +x /usr/local/bin/docker-entrypoint
 ENTRYPOINT ["docker-entrypoint"]
 CMD ["php-fpm"]
 
-FROM node:${NODE_VERSION}-alpine AS sylius_nodejs
+FROM node:${NODE_VERSION}-alpine AS sylius_plugins_nodejs
 
 WORKDIR /srv/sylius
 
@@ -126,12 +127,12 @@ RUN set -eux; \
 	yarn install; \
 	yarn cache clean
 
-COPY --from=sylius_php /srv/sylius/vendor/sylius/sylius/src/Sylius/Bundle/UiBundle/Resources/private vendor/sylius/sylius/src/Sylius/Bundle/UiBundle/Resources/private/
-COPY --from=sylius_php /srv/sylius/vendor/sylius/sylius/src/Sylius/Bundle/AdminBundle/Resources/private vendor/sylius/sylius/src/Sylius/Bundle/AdminBundle/Resources/private/
-COPY --from=sylius_php /srv/sylius/vendor/sylius/sylius/src/Sylius/Bundle/ShopBundle/Resources/private vendor/sylius/sylius/src/Sylius/Bundle/ShopBundle/Resources/private/
+COPY --from=sylius_plugins_php /srv/sylius/vendor/sylius/sylius/src/Sylius/Bundle/UiBundle/Resources/private vendor/sylius/sylius/src/Sylius/Bundle/UiBundle/Resources/private/
+COPY --from=sylius_plugins_php /srv/sylius/vendor/sylius/sylius/src/Sylius/Bundle/AdminBundle/Resources/private vendor/sylius/sylius/src/Sylius/Bundle/AdminBundle/Resources/private/
+COPY --from=sylius_plugins_php /srv/sylius/vendor/sylius/sylius/src/Sylius/Bundle/ShopBundle/Resources/private vendor/sylius/sylius/src/Sylius/Bundle/ShopBundle/Resources/private/
 
-COPY --from=sylius_php /srv/sylius/vendor/sylius/sylius/src/Sylius/Bundle/AdminBundle/gulpfile.babel.js vendor/sylius/sylius/src/Sylius/Bundle/AdminBundle/gulpfile.babel.js
-COPY --from=sylius_php /srv/sylius/vendor/sylius/sylius/src/Sylius/Bundle/ShopBundle/gulpfile.babel.js vendor/sylius/sylius/src/Sylius/Bundle/ShopBundle/gulpfile.babel.js
+COPY --from=sylius_plugins_php /srv/sylius/vendor/sylius/sylius/src/Sylius/Bundle/AdminBundle/gulpfile.babel.js vendor/sylius/sylius/src/Sylius/Bundle/AdminBundle/gulpfile.babel.js
+COPY --from=sylius_plugins_php /srv/sylius/vendor/sylius/sylius/src/Sylius/Bundle/ShopBundle/gulpfile.babel.js vendor/sylius/sylius/src/Sylius/Bundle/ShopBundle/gulpfile.babel.js
 
 COPY gulpfile.babel.js .babelrc ./
 RUN set -eux; \
@@ -143,11 +144,11 @@ RUN chmod +x /usr/local/bin/docker-entrypoint
 ENTRYPOINT ["docker-entrypoint"]
 CMD ["yarn", "watch"]
 
-FROM nginx:${NGINX_VERSION}-alpine AS sylius_nginx
+FROM nginx:${NGINX_VERSION}-alpine AS sylius_plugins_nginx
 
 COPY docker/nginx/conf.d/default.conf /etc/nginx/conf.d/
 
 WORKDIR /srv/sylius
 
-COPY --from=sylius_php /srv/sylius/public public/
-COPY --from=sylius_nodejs /srv/sylius/public public/
+COPY --from=sylius_plugins_php /srv/sylius/public public/
+COPY --from=sylius_plugins_nodejs /srv/sylius/public public/
