@@ -79,7 +79,7 @@
             "dev-master": "1.9-dev"
         },
         "symfony": {
-            "allow-contrib": false
+            "allow-contrib": true
         }
     },
     "autoload": {
@@ -96,6 +96,7 @@
         ]
     },
     "prefer-stable": true,
+    "minimum-stability": "dev",
     "scripts": {
         "post-install-cmd": [
             "@auto-scripts"

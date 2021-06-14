@@ -24,23 +24,6 @@ clean project for your updates.
 
 Installation
 ------------
-
-### Sylius 1.8 and php 7.3
-
-```bash
-# GIT
-$ git clone --branch 1.8-7.3 --depth 1 git@github.com:pocky/Sylius-Plugin-Standard.git project
-$ cd project && rm -Rf .git
-```
-
-### Sylius 1.8 and php 7.4
-
-```bash
-# GIT
-$ git clone --branch 1.8-7.4 --depth 1 git@github.com:pocky/Sylius-Plugin-Standard.git project
-$ cd project && rm -Rf .git
-```
-
 ### Sylius 1.9 and php 7.4
 
 ```bash
@@ -70,7 +53,7 @@ Installation
 
 ```bash
 $ wget http://getcomposer.org/composer.phar
-$ php composer.phar create-project sylius/sylius-plugin-standard project
+$ php composer.phar create-project pocky/sylius-plugin-standard project
 $ cd project
 $ yarn install
 $ yarn build
