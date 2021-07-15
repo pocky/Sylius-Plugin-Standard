@@ -34,7 +34,7 @@ $ cd project && rm -Rf .git
 Installation for maintener
 ------------
 ```bash
-$ git clone git@github.com:pocky/Sylius-Plugin-Standard.git project
+$ git clone --branch 1.9-7.4 --depth 1 git@github.com:pocky/Sylius-Plugin-Standard.git project
 ```
 
 ### Sylius 1.8 and php 7.4
