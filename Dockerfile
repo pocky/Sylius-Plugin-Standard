@@ -77,7 +77,7 @@ ARG APP_ENV=prod
 
 # prevent the reinstallation of vendors at every changes in the source code
 COPY plugins plugins/
-COPY composer.json composer.lock symfony.lock ./
+COPY composer.json symfony.lock ./
 RUN set -eux; \
 	composer install --prefer-dist --no-autoloader --no-scripts --no-progress --no-suggest; \
 	composer clear-cache
@@ -122,7 +122,7 @@ RUN set -eux; \
 	;
 
 # prevent the reinstallation of vendors at every changes in the source code
-COPY package.json yarn.lock ./
+COPY package.json composer.lock yarn.lock ./
 RUN set -eux; \
 	yarn install; \
 	yarn cache clean

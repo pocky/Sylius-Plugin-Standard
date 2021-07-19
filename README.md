@@ -24,11 +24,11 @@ clean project for your updates.
 
 Installation
 ------------
-### Sylius 1.9 and php 7.4
+### Sylius 1.10 and php 7.4
 
 ```bash
 # GIT
-$ git clone --branch 1.9-7.4 --depth 1 git@github.com:pocky/Sylius-Plugin-Standard.git project
+$ git clone --branch 1.10-7.4 --depth 1 git@github.com:pocky/Sylius-Plugin-Standard.git project
 $ cd project && rm -Rf .git
 ```
 Installation for maintener
