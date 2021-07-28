@@ -30,9 +30,9 @@
         }
     ],
     "require": {
-        "php": "^7.4",
-        "sylius/paypal-plugin": "^1.1",
-        "sylius/sylius": "~1.10.0",
+        "php": "^7.4 || ^8.0",
+        "sylius/paypal-plugin": "^1.2.1",
+        "sylius/sylius": "^1.10",
         "symfony/dotenv": "^4.4 || ^5.2",
         "symfony/flex": "^1.11"
     },
@@ -55,17 +55,16 @@
         "lchrusciel/api-test-case": "^5.0",
         "phpspec/phpspec": "^7.0",
         "phpstan/extension-installer": "^1.0",
-        "phpstan/phpstan": "0.12.89",
+        "phpstan/phpstan": "0.12.90",
         "phpstan/phpstan-doctrine": "0.12.39",
         "phpstan/phpstan-webmozart-assert": "0.12.12",
         "phpunit/phpunit": "^8.5",
         "stripe/stripe-php": "^6.43",
-        "sylius-labs/coding-standard": "^3.2",
+        "sylius-labs/coding-standard": "^4.0",
         "symfony/browser-kit": "^4.4 || ^5.2",
         "symfony/debug-bundle": "^4.4 || ^5.2",
         "symfony/intl": "^4.4 || ^5.2",
-        "symfony/web-profiler-bundle": "^4.4 || ^5.2",
-        "symplify/easy-coding-standard": "^8.3"
+        "symfony/web-profiler-bundle": "^4.4 || ^5.2"
     },
     "config": {
         "preferred-install": {
@@ -75,7 +74,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.9-dev"
+            "dev-master": "1.10-dev"
         },
         "symfony": {
             "allow-contrib": true
